@@ -1,5 +1,7 @@
 import React from "react";
 import "./App.scss";
+import Home from "./components/Home/home";
+import Header from "./components/Header/header";
 import { Login, Register } from "./components/login/index";
 
 class App extends React.Component {
@@ -35,6 +37,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="login">
+          <Header />
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (
               <Login containerRef={ref => (this.current = ref)} />
@@ -60,8 +63,7 @@ const RightSide = props => {
     <div
       className="right-side"
       ref={props.containerRef}
-      onClick={props.onClick}
-    >
+      onClick={props.onClick}>
       <div className="inner-container">
         <div className="text">{props.current}</div>
       </div>

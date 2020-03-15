@@ -1,0 +1,32 @@
+<div className="nav has-shadow">
+    <div clasName="container">
+        <div className="nav-left">
+            <a className="nav-item">The BASED Film Database</a>
+        </div>
+
+        <span className="nav-toggle" onClick="toggleNav" v-bind:className = "{ 'is-active': isActive}"
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+
+        <div className= "nav-right nav-menu" v-bind:className = "{'is-active': isActive}">
+
+        <router-link to "/" className="nav-item r-item">Home</router-link>
+        <router-link to="index" className="nav-item r-item">Sign Up/Login</router-link>
+
+        <div className="nav-item">
+         <p className="control">
+           <a className="button is-primary is-outlined">
+              <span className="icon">
+               <i className="fa fa-download"></i>
+               </span>
+               <span>Join Now</span>
+            </a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+            
