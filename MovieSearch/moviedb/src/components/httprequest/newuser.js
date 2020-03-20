@@ -6,33 +6,42 @@ class NewUsers extends Component {
         super(props)
 
         this.state = {
-            posts: []
+            users: []
 
         }
     }
 
     componentDidMount() {
-        axios.get("/newusers")
-            .then(response => {
-                console.log(response)
-                this.setState({ posts: response.data })
-            })
+        fetch('http://localhost:3001/newusers')
+            .then(response => response.json())
             .catch(error => {
                 console.log(error)
-
             })
+            .then(res => {
+                if (res && res.data) {
+                    this.setState({ users: [...this.state.users, ...res.data] })
+                }
+            });
+    }
+
+    renderUsers() {
+        if (this.state.users.length <= 0) {
+            return <div > Loading... < /div>
+        } else {
+            return this.state.users.map((val, key) => {
+                return <div key = { key } > { val.id } | { val.title } < /div>;
+            });
+        }
     }
     render() {
         const { posts, error } = this.state
         return ( <
             div > {
-                posts.length ?
-                posts.map(post => < div key = { post.id } > { post.title } < /div>):
-                    null
-                } < /
-                div >
-            )
-        }
+                this.renderUsers()
+            } < /
+            div >
+        )
     }
+}
 
-    export default NewUsers
+export default NewUsers;

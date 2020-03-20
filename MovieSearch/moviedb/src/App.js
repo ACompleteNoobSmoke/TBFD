@@ -3,7 +3,7 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 //import SearchPage from './searchpage.js';
 import LoginPage from './components/login/loginpage.jsx';
-import NewUsers from './components/httprequest/newuser';
+import HomePage from './components/pages/homepage.js';
 //import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 //import { NavBar } from './components/NavBar';
@@ -14,9 +14,11 @@ import NewUsers from './components/httprequest/newuser';
 class App extends Component {
 
     render() {
-        return ( <
-            NewUsers / >
+        return ( < div className = "App" > <
+            HomePage / >
 
+            <
+            /div>
         );
     }
 }

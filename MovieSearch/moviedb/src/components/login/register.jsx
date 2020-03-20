@@ -22,6 +22,8 @@ export class Register extends React.Component {
   registerHandler = e => {
     e.preventDefault();
     console.log(this.state);
+    const name = this.state.firstname.concat(" " + this.state.lastname);
+
     axios
       .post("/newusers", this.state)
       .then(response => {

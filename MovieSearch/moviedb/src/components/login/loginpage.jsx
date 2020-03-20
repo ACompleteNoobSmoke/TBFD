@@ -1,7 +1,6 @@
 import React from "react";
 import "../../../src/App.scss";
 import { Login, Register } from "./index.jsx";
-import { Link } from "react-dom";
 
 class LoginPage extends React.Component {
   constructor(props) {
