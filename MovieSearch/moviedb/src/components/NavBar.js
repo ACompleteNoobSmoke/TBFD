@@ -1,46 +1,67 @@
-import React from 'react';
-import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
-import styled from 'styled-components';
-const Styles = styled.div `
+import React, { Component } from 'react';
+import '../components/css/NavBarCSS.css';
 
-  .navbar { background-color: #222; }
-  a, .navbar-nav, .navbar-light .nav-link {
-    color: #9FFFCB;
-    &:hover { color: white; }
-  }
-  .navbar-brand {
-    font-size: 1.4em;
-    color: #9FFFCB;
-    &:hover { color: white; }
-  }
-  .form-center {
-    position: absolute !important;
-    left: 25%;
-    right: 25%;
-  }
-`;
-export const NavBar = () => ( <
-    Styles >
-    <
-    Navbar expand = "lg" >
+const navSlide = () => {
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav-links');
+    const navLinks = document.querySelectorAll('.nav-links li');
 
-    <
-    Form className = "form-center" >
-    <
-    FormControl type = "text"
-    placeholder = "Search"
-    className = "" / >
-    <
-    /Form> <
-    Navbar.Collapse id = "basic-navbar-nav" >
-    <
-    Nav className = "ml-auto" >
-    <
-    Nav.Item > < Nav.Link href = "/" > Home < /Nav.Link></Nav.Item >
-    <
-    Nav.Item > < Nav.Link href = "/login" > Login / Register < /Nav.Link>  < /Nav.Item > < /
-    Nav > < /
-    Navbar.Collapse > <
-    /Navbar> < /
-    Styles >
-)
+    burger.addEventListener('click', () => {
+
+        nav.classList.toggle('nav-active');
+
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = '';
+            } else {
+                link.style.animation = `navLinkFade 0.5s ease forwards ${index /7 + 1}s`;
+            }
+        });
+        burger.classList.toggle('toggle');
+    });
+
+
+
+
+}
+
+
+
+
+class NavBar extends Component {
+
+    componentDidMount() {
+        navSlide();
+    }
+
+    render() {
+
+
+
+        return ( < nav >
+            <
+            div className = "logo" >
+            <
+            h4 > The BASED Film Database < /h4> < /
+            div > <
+            ul className = "nav-links" >
+            <
+            li > < a href = "#" > Home < /a></li >
+            <
+            li > < a href = "#" > Login / Register < /a></li >
+            <
+            li > < a href = "#" > About < /a></li >
+            <
+            li > < a href = "#" > Contact Us < /a></li >
+            <
+            /ul><div class = "burger" > <
+            div className = "line1" > < /div> <
+            div className = "line2" > < /div> <
+            div className = "line3" > < /div> < /
+            div > < /
+            nav >
+        )
+    }
+}
+
+export default NavBar;
