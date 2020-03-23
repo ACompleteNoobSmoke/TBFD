@@ -20,13 +20,19 @@ export class Login extends React.Component {
   registerHandler = e => {
     e.preventDefault();
     console.log(this.state);
-    axios
-      .post("/returningusers", this.state)
-      .then(response => {
-        console.log(response);
+    fetch("http://localhost:3001/returningusers", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data);
       })
       .catch(error => {
-        console.log(error);
+        console.error("Error:", error);
       });
   };
 

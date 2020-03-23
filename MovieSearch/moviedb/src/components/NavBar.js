@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../components/css/NavBarCSS.css';
+import { Link } from 'react-router-dom';
 
 const navSlide = () => {
     const burger = document.querySelector('.burger');
@@ -44,17 +45,14 @@ class NavBar extends Component {
             <
             h4 > The BASED Film Database < /h4> < /
             div > <
-            ul className = "nav-links" >
+            ul className = "nav-links" > < Link to = "/Home" >
             <
-            li > < a href = "#" > Home < /a></li >
-            <
-            li > < a href = "#" > Login / Register < /a></li >
-            <
-            li > < a href = "#" > About < /a></li >
-            <
-            li > < a href = "#" > Contact Us < /a></li >
-            <
-            /ul><div class = "burger" > <
+            li > Home < /li > < /Link > < Link to = '/login
+            '><
+            li > Login < /li > < /Link > <
+            li > About < /li > <
+            li > Contact Us < /li > < /
+            ul > < div class = "burger" > <
             div className = "line1" > < /div> <
             div className = "line2" > < /div> <
             div className = "line3" > < /div> < /

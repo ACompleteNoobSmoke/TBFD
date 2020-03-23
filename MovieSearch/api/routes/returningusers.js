@@ -6,54 +6,56 @@ var connectionString = 'mysql://root:codingroot1!@localhost:3306/moviedbsql?char
 
 var connection = mysql.createPool(connectionString);
 
-var newperson = null;
+var returningperson = [];
+var loggingIn = null;
 
-function saveToDatabase(newperson) {
+function saveToDatabase(loggingIn) {
 
     connection.getConnection(function(err) {
         if (err) throw err;
         console.log("Connected!");
-        var sql = "Insert into UserAccounts values (" + "'" + newperson.FirstName + "', " + "'" + newperson.LastName + "', " + "'" + newperson.Username +
-            "', " + "'" + newperson.Password + "', " + "'" + newperson.Email + "');";
+        var sql = "Select * from UserAccounts Where  Username = '" + loggingIn.Username + "' And Password ='" + loggingIn.Password + "';";
         connection.query(sql, function(err, result) {
             if (err) throw err;
-            console.log("1 record inserted");
+            console.log("1 record retrived");
+            getPerson(result);
         });
     });
+}
+
+function getPerson(result) {
+    returningperson = result;
 }
 
 
 router.get('/', (req, res, next) => {
 
-    console.log("This should print " + newperson);
+    console.log("This should print " + returningperson);
     res.status(200).json({
         message: "Handling GET request to /newusers",
-        NewUser: newperson
+        User: returningperson
     })
 })
 
 
 router.post('/', (req, res, next) => {
     var user = {
-        FirstName: req.body.firstname,
-        LastName: req.body.lastname,
-        Email: req.body.email,
         Username: req.body.username,
         Password: req.body.password
     }
-    newperson = user;
-    console.log("This should post " + user.LastName);
+    loggingIn = user;
+    console.log("This should post " + user.Username);
     res.status(200).json({
         message: "Handling POST request to /newusers",
-        NewUser: user
+        OldUser: user
     })
 
-    saveToDatabase(newperson)
+    saveToDatabase(loggingIn)
 });
 
 
 
-
+/*
 router.get('/:newuserusername', (req, res, next) => {
     const username = req.params.newuserusername;
     if (username === 'special') {
@@ -73,6 +75,8 @@ router.patch('/:newusersusername', (req, res, next) => {
         message: "Updated User Information"
     });
 });
+
+*/
 
 
 module.exports = router;

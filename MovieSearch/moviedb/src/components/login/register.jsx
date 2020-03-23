@@ -23,14 +23,30 @@ export class Register extends React.Component {
     e.preventDefault();
     console.log(this.state);
     const name = this.state.firstname.concat(" " + this.state.lastname);
+    const data = this.state;
 
-    axios
-      .post("/newusers", this.state)
-      .then(response => {
-        console.log(response);
+    // axios
+    //   .post("/newusers", this.state)
+    //   .then(response => {
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+    fetch("http://localhost:3001/users", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Success:", data);
       })
       .catch(error => {
-        console.log(error);
+        console.error("Error:", error);
       });
   };
 

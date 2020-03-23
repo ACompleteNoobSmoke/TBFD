@@ -1,6 +1,7 @@
 import React from "react";
 import "../../../src/App.scss";
 import { Login, Register } from "./index.jsx";
+import NavBar from "../NavBar.js";
 
 class LoginPage extends React.Component {
   constructor(props) {
